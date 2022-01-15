@@ -13,7 +13,7 @@ const HomeScreen = ({ navigation }) => {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "shazam-core.p.rapidapi.com",
-        "x-rapidapi-key": "e8d69c4006msh299023197d8a194p1576a7jsn7d6c02f5bd45"
+        "x-rapidapi-key": "ec7910eedcmshaf701257a7297d2p13387fjsnd445c46555ed"
       }
     })
       .then(response => response.json())
@@ -58,9 +58,11 @@ const HomeScreen = ({ navigation }) => {
         .then(response => response.json())
         .then(response => {
           let tracks = [];
-          for (const trackData of response) { //for in, gaat heel de lijst af, want er is geen index zoals in een normale for loop. "response" is een array, dit heb ik gezien in de logs. trackData is 1 opbject binnen de response van de api
+          // for of, gaat heel de lijst af, want er is geen index zoals in een normale for loop. "response" is een array, dit heb ik gezien in de logs. trackData is 1 opbject binnen de response van de api
+          for (const trackData of response) {
             // console.log(trackData); trackData bekijken
-            tracks.push({ // Hier bepaal ik welke data ik nodig heb uit de array response van de api. Dit doe ik omdat er bij de search functie een andere vorm van data formatting wordt gebruikt, namemlijk een extra "heading"
+            tracks.push({
+              // Hier bepaal ik welke data ik nodig heb uit de array response van de api. Dit doe ik omdat er bij de search functie een andere vorm van data formatting wordt gebruikt, namemlijk een extra "heading"
               id: trackData.id, //kom recht uit de api, namelijk de id
               title: trackData.heading.title,
               image: trackData.images.default
@@ -79,7 +81,6 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Lyrics Wizard</Text>
       <TextInput
         style={styles.searchbox}
         onChangeText={getSongByTitle}
@@ -94,7 +95,8 @@ const HomeScreen = ({ navigation }) => {
             id={item.id}
             title={item.title}
             image={item.image}
-            onSelectTrack={() => { navigation.navigate('Details', { trackId: item.id }) }} // selected Id was de nummer van het item in de array, dit is nu item.id, dit zorgt ervoor dat we de id pakken van het huidige item dat overeenkomt met de id in de api
+            // selected Id was de nummer van het item in de array, dit is nu item.id, dit zorgt ervoor dat we de id pakken van het huidige item dat overeenkomt met de id in de api
+            onSelectTrack={() => { navigation.navigate('Details', { trackId: item.id }) }}
           />)}
       />
 
@@ -106,18 +108,11 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#223343',
+    backgroundColor: '#004643',
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: 40,
     paddingHorizontal: 20
-  },
-  title: {
-    color: '#FFF',
-    fontSize: 32,
-    fontWeight: '700',
-    textAlign: 'center',
-    marginBottom: 20,
   },
   searchbox: {
     fontSize: 20,

@@ -11,12 +11,12 @@ const TrackDetails = props => {
       "method": "GET",
       "headers": {
         "x-rapidapi-host": "shazam-core.p.rapidapi.com",
-        "x-rapidapi-key": "e8d69c4006msh299023197d8a194p1576a7jsn7d6c02f5bd45"
+        "x-rapidapi-key": "ec7910eedcmshaf701257a7297d2p13387fjsnd445c46555ed"
       }
     })
       .then(response => response.json())
       .then(response => {
-        console.log(response);
+        // console.log(response);
         setTrackDetails(response);
       })
       .catch(err => {
@@ -37,13 +37,13 @@ const TrackDetails = props => {
   return (
     <View style={styles.trackDetails}>
       {trackDetails.images != undefined ? <Image //short if statement, != betekent is het niet gelijk aan undefined. Hiermee wil ik checken of de property "images" gedefined is
-      // Is images niet == undefined? Laat dan de image tag zien. Is images == undefined? Laat dan null (niets) zien. 
-      // = CONDITIONAL RENDERING
+        // Is images niet == undefined? Laat dan de image tag zien. Is images == undefined? Laat dan null (niets) zien. 
+        // = CONDITIONAL RENDERING
         style={styles.trackDetailsCover}
         source={{
           uri: trackDetails.images.coverarthq,
         }}
-      />:null}
+      /> : null}
       <Text styles={styles.titleDetails}>
         Track: {trackDetails.title}
       </Text>
@@ -51,10 +51,10 @@ const TrackDetails = props => {
         Artist: {trackDetails.subtitle}
       </Text>
       {/* CONDITIONAL RENDERING */}
-      {trackDetails.genres != undefined ? <Text styles={styles.genreDetails}> 
+      {trackDetails.genres != undefined ? <Text styles={styles.genreDetails}>
         Genre: {trackDetails.genres.primary}
       </Text>
-      :null}
+        : null}
     </View>
   );
 }

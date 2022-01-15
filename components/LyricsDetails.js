@@ -12,12 +12,12 @@ const LyricsDetails = props => {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "shazam-core.p.rapidapi.com",
-                "x-rapidapi-key": "e8d69c4006msh299023197d8a194p1576a7jsn7d6c02f5bd45"
+                "x-rapidapi-key": "ec7910eedcmshaf701257a7297d2p13387fjsnd445c46555ed"
             }
         })
             .then(response => response.json())
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 setLyricsDetails(response);
             })
             .catch(err => {

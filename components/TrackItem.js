@@ -13,7 +13,7 @@ const TrackItem = props => {
         />
         <Text style={styles.trackTitle}>
           {props.title}
-          </Text>
+        </Text>
       </View>
     </TouchableOpacity >
   );
@@ -22,21 +22,23 @@ const TrackItem = props => {
 const styles = StyleSheet.create({
   listItem: {
     padding: 10,
-    marginVertical: 5,
-    borderColor: 'grey',
-    borderStyle: 'dashed',
-    borderWidth: 0.5,
     flex: 2,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: '#001e1d',
+    marginVertical: 10,
+    borderRadius: 8,
+    width: '95%'
   },
   trackCover: {
     width: 100,
     height: 100,
+    borderRadius: 5
   },
   trackTitle: {
     paddingLeft: 10,
-    color: "white"
+    color: '#fffffe',
+    width: '80%'
   }
 });
 export default TrackItem;
