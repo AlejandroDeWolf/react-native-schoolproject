@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#001e1d',
     marginVertical: 10,
     borderRadius: 8,
-    width: '95%'
+    width: '94.6%'
   },
   trackCover: {
     width: 100,

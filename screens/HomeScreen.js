@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, FlatList } from 'react-native';
+import { StyleSheet, View, TextInput, FlatList } from 'react-native';
 
 import TrackItem from '../components/TrackItem';
 
@@ -19,9 +19,11 @@ const HomeScreen = ({ navigation }) => {
       .then(response => response.json())
       .then(response => {
         let tracks = [];
-        for (const trackData of response) { //for in, gaat heel de lijst af, want er is geen index zoals in een normale for loop. "response" is een array, dit heb ik gezien in de logs. trackData is 1 opbject binnen de response van de api
+        // for of, gaat heel de lijst af, want er is geen index zoals in een normale for loop. "response" is een array, dit heb ik gezien in de logs. trackData is 1 opbject binnen de response van de api
+        for (const trackData of response) {
           // console.log(trackData); trackData bekijken
-          tracks.push({ // Hier bepaal ik welke data ik nodig heb uit de array response van de api. Dit doe ik omdat er bij de search functie een andere vorm van data formatting wordt gebruikt, namemlijk een extra "heading"
+          // Hier bepaal ik welke data ik nodig heb uit de array response van de api. Dit doe ik omdat er bij de search functie een andere vorm van data formatting wordt gebruikt, namemlijk een extra "heading"
+          tracks.push({
             id: trackData.id, //kom recht uit de api, namelijk de id
             title: trackData.title,
             image: trackData.images.coverart
@@ -36,15 +38,12 @@ const HomeScreen = ({ navigation }) => {
   }
 
   useEffect(() => {
-    getChart(); //toon world chart songs bij begin scherm
+    // toon world chart songs bij begin scherm
+    getChart();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("TRACKS");
-  //   console.log(tracks);
-  // }, [tracks]);
 
-  const getSongByTitle = async (enteredText) => {//argument meegegeven door onChangeText
+  const getSongByTitle = async (enteredText) => { // argument meegegeven door onChangeText
     if (enteredText.length > 3) {
       const url = encodeURI("https://shazam-core.p.rapidapi.com/v1/tracks/search?query=" + enteredText);
       //console.log(url);
@@ -52,7 +51,7 @@ const HomeScreen = ({ navigation }) => {
         "method": "GET",
         "headers": {
           "x-rapidapi-host": "shazam-core.p.rapidapi.com",
-          "x-rapidapi-key": "e8d69c4006msh299023197d8a194p1576a7jsn7d6c02f5bd45"
+          "x-rapidapi-key": "ec7910eedcmshaf701257a7297d2p13387fjsnd445c46555ed"
         }
       })
         .then(response => response.json())
@@ -84,7 +83,7 @@ const HomeScreen = ({ navigation }) => {
       <TextInput
         style={styles.searchbox}
         onChangeText={getSongByTitle}
-        placeholder="search song"
+        placeholder="Search song"
       />
 
       <FlatList

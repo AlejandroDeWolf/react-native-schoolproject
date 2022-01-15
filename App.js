@@ -33,6 +33,9 @@ function TabNavigator() {
           return <Ionicons name={iconName} size={size} color={color} />
 
         },
+
+        tabBarActiveTintColor: "#e16162",
+        tabBarInactiveTintColor: "grey"
       })}
     >
 

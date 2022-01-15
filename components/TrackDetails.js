@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 const TrackDetails = props => {
   const [trackDetails, setTrackDetails] = useState({})
@@ -25,36 +25,37 @@ const TrackDetails = props => {
   }
 
   useEffect(() => {
-    getTrackDetails(); //toon upcomming songs bij begin scherm
+    //toon upcomming songs bij begin scherm
+    getTrackDetails();
     // console.log(trackDetails.images);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(tracks); //toon upcomming songs bij begin scherm
-  // }, [tracks]);
-
-
   return (
     <View style={styles.trackDetails}>
-      {trackDetails.images != undefined ? <Image //short if statement, != betekent is het niet gelijk aan undefined. Hiermee wil ik checken of de property "images" gedefined is
-        // Is images niet == undefined? Laat dan de image tag zien. Is images == undefined? Laat dan null (niets) zien. 
+
+      {trackDetails.images != undefined ? <Image
+        //short if statement, != betekent is het niet gelijk aan undefined. Hiermee wil ik checken of de property "images" gedefined is
+        // Is images NIET gelijk aan undefined? Laat dan de image tag zien. Is images == undefined? Laat dan null (niets) zien. 
         // = CONDITIONAL RENDERING
         style={styles.trackDetailsCover}
         source={{
           uri: trackDetails.images.coverarthq,
         }}
       /> : null}
-      <Text styles={styles.titleDetails}>
-        Track: {trackDetails.title}
+
+      <Text style={styles.track}>
+        {trackDetails.title}
       </Text>
-      <Text styles={styles.subtitleDetails}>
+
+      <Text style={styles.subtitle}>
         Artist: {trackDetails.subtitle}
       </Text>
-      {/* CONDITIONAL RENDERING */}
-      {trackDetails.genres != undefined ? <Text styles={styles.genreDetails}>
+
+      {trackDetails.genres != undefined ? <Text style={styles.genre}>
         Genre: {trackDetails.genres.primary}
       </Text>
         : null}
+
     </View>
   );
 }
@@ -63,16 +64,28 @@ const styles = StyleSheet.create({
   trackDetails: {
     padding: 10,
     marginVertical: 5,
-    borderColor: 'grey',
-    borderStyle: 'dashed',
-    borderWidth: 0.5,
+    width: '100%'
   },
   trackDetailsCover: {
     width: "100%",
     height: "70%",
   },
-  titleDetails: {
-
+  track: {
+    color: "#fffffe",
+    fontSize: 26,
+    textAlign: "center",
+    marginTop: 10
+  },
+  subtitle: {
+    color: "#fffffe",
+    fontSize: 20,
+    textAlign: "left",
+    marginTop: 20
+  },
+  genre: {
+    color: "#fffffe",
+    fontSize: 20,
+    textAlign: "left"
   }
 });
 export default TrackDetails;

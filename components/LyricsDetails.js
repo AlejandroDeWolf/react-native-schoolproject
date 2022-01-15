@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { FlatList } from 'react-native-web';
+import { View, Text, StyleSheet } from 'react-native';
 
 const LyricsDetails = props => {
     const [lyricsDetails, setLyricsDetails] = useState({})
@@ -26,21 +25,17 @@ const LyricsDetails = props => {
     }
 
     useEffect(() => {
-        getLyricsDetails(); //toon upcomming songs bij begin scherm
+        //toon upcomming songs bij begin scherm
+        getLyricsDetails();
         // console.log(lyricsDetails.images);
     }, []);
-
-    // useEffect(() => {
-    //   console.log(tracks); //toon upcomming songs bij begin scherm
-    // }, [tracks]);
-
 
     return (
         <View style={styles.lyricsDetails}>
 
             {/* CONDITIONAL RENDERING  */}
             {lyricsDetails.sections != undefined ?
-                <Text styles={styles.lyricsDetails}>
+                <Text style={{ color: "white", marginBottom: 40 }}>
                     {lyricsDetails.sections[1].text}
                 </Text>
                 : null}
@@ -51,19 +46,5 @@ const LyricsDetails = props => {
 }
 
 const styles = StyleSheet.create({
-    lyricsDetails: {
-        padding: 10,
-        marginVertical: 5,
-        borderColor: 'grey',
-        borderStyle: 'dashed',
-        borderWidth: 0.5,
-    },
-    lyricsDetailsCover: {
-        width: "100%",
-        height: "70%",
-    },
-    titleDetails: {
-
-    }
 });
 export default LyricsDetails;
